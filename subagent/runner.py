@@ -1,4 +1,4 @@
-"""Subagent runner for Claude Harness.
+"""Subagent runner for small-claude-code.
 
 Subagents allow parallel task execution:
 - Spawn isolated agent loops

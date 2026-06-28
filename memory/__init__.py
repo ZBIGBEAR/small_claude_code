@@ -1,4 +1,4 @@
-"""Memory module for Claude Harness."""
+"""Memory module for small-claude-code."""
 
 from .store import MemoryStore
 

@@ -1,4 +1,4 @@
-"""Context module for Claude Harness."""
+"""Context module for small-claude-code."""
 
 from .compact import ContextCompactor
 

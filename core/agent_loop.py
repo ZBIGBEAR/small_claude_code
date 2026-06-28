@@ -1,4 +1,4 @@
-"""Core agent loop for Claude Harness.
+"""Core agent loop for small-claude-code.
 
 The agent loop is the heart of the harness. It:
 1. Sends messages to the model

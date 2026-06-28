@@ -1,4 +1,4 @@
-"""File operation tools for Claude Harness."""
+"""File operation tools for small-claude-code."""
 
 from pathlib import Path
 

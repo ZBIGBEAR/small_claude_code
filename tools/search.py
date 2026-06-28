@@ -1,4 +1,4 @@
-"""Search tools for Claude Harness."""
+"""Search tools for small-claude-code."""
 
 import re
 from pathlib import Path

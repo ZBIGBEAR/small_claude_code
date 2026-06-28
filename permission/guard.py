@@ -1,4 +1,4 @@
-"""Permission guard for Claude Harness.
+"""Permission guard for small-claude-code.
 
 The permission guard provides:
 - Allow/deny rules for tools

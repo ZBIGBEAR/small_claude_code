@@ -1,4 +1,4 @@
-"""Base tool class for Claude Harness."""
+"""Base tool class for small-claude-code."""
 
 from dataclasses import dataclass
 from typing import Any, Callable

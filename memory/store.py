@@ -1,4 +1,4 @@
-"""Memory store for Claude Harness.
+"""Memory store for small-claude-code.
 
 The memory system provides:
 - Entity extraction and storage

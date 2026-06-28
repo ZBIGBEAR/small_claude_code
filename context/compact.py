@@ -1,4 +1,4 @@
-"""Context compaction for Claude Harness.
+"""Context compaction for small-claude-code.
 
 Context compaction strategies to handle long conversations:
 - snip: Remove middle messages

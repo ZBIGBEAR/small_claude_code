@@ -1,4 +1,4 @@
-"""Claude Harness - A lightweight agent harness framework."""
+"""small-claude-code - A lightweight agent harness framework."""
 
 from .agent_loop import AgentLoop
 from .message import Message, MessageRole

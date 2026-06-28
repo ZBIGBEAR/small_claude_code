@@ -1,4 +1,4 @@
-"""Task module for Claude Harness."""
+"""Task module for small-claude-code."""
 
 from .manager import TaskManager, Task, TaskStatus
 

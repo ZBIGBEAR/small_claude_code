@@ -1,4 +1,4 @@
-"""Tools module for Claude Harness."""
+"""Tools module for small-claude-code."""
 
 from .base import BaseTool, ToolResult
 from .bash import BashTool

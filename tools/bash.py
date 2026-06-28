@@ -1,4 +1,4 @@
-"""Bash tool for Claude Harness."""
+"""Bash tool for small-claude-code."""
 
 import subprocess
 from pathlib import Path

@@ -1,4 +1,4 @@
-"""Subagent module for Claude Harness."""
+"""Subagent module for small-claude-code."""
 
 from .runner import SubagentRunner
 

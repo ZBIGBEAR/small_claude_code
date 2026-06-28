@@ -1,4 +1,4 @@
-"""Skill loader for Claude Harness.
+"""Skill loader for small-claude-code.
 
 Skills are modular extensions that provide:
 - Specialized tool sets

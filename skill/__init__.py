@@ -1,4 +1,4 @@
-"""Skill module for Claude Harness."""
+"""Skill module for small-claude-code."""
 
 from .loader import SkillLoader, Skill
 

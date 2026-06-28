@@ -1,4 +1,4 @@
-"""Hook system for Claude Harness.
+"""Hook system for small-claude-code.
 
 Hooks provide extension points around tool execution:
 - pre_tool: Called before a tool is executed

@@ -1,4 +1,4 @@
-"""Configuration management for Claude Harness."""
+"""Configuration management for small-claude-code."""
 
 import os
 from dataclasses import dataclass, field

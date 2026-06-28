@@ -1,4 +1,4 @@
-"""Web fetch tool for Claude Harness."""
+"""Web fetch tool for small-claude-code."""
 
 import urllib.request
 from typing import Literal
@@ -40,7 +40,7 @@ class WebFetchTool(BaseTool):
         """
         try:
             headers = headers or {}
-            headers["User-Agent"] = "Claude-Harness/1.0"
+            headers["User-Agent"] = "small-claude-code/1.0"
 
             req = urllib.request.Request(
                 url,

@@ -1,4 +1,4 @@
-"""Message handling for Claude Harness."""
+"""Message handling for small-claude-code."""
 
 from dataclasses import dataclass, field
 from enum import Enum

@@ -1,4 +1,4 @@
-"""Task system for Claude Harness.
+"""Task system for small-claude-code.
 
 The task system provides:
 - Task creation and tracking
