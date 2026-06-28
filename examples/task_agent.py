@@ -7,8 +7,8 @@ This example demonstrates:
 - Persistent task management
 """
 
-from harness import AgentLoop, Config, BashTool, ReadTool
-from harness.task import TaskManager, TaskStatus
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code.task import TaskManager, TaskStatus
 
 
 def main():

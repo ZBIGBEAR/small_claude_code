@@ -7,8 +7,8 @@ This example demonstrates:
 - Approval workflow
 """
 
-from harness import AgentLoop, Config, BashTool, ReadTool, WriteTool
-from harness.permission import PermissionGuard, PermissionAction
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool, WriteTool
+from small_claude_code.permission import PermissionGuard, PermissionAction
 
 
 def approval_callback(tool_name: str, params: dict) -> bool:

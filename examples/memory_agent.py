@@ -7,8 +7,8 @@ This example demonstrates:
 - Context-aware responses
 """
 
-from harness import AgentLoop, Config, BashTool, ReadTool
-from harness.memory import MemoryStore
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code.memory import MemoryStore
 
 
 def main():

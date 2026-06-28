@@ -15,13 +15,13 @@ Core Modules:
 - subagent: Parallel subagent execution
 
 Quick Start:
-    from harness import AgentLoop, Config
-    from harness.tools import BashTool, ReadTool
+    from small_claude_code import AgentLoop, Config
+    from small_claude_code.tools import BashTool, ReadTool
 
     config = Config.from_env()
     agent = AgentLoop(config)
-    agent.register_tool("bash", BashTool())
-    agent.register_tool("read", ReadTool())
+    agent.register_tool("bash", BashTool(workdir=str(config.workdir)))
+    agent.register_tool("read", ReadTool(workdir=str(config.workdir)))
 
     result = agent.run("Read the README file")
     print(result)

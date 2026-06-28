@@ -1,8 +1,8 @@
-"""Tests for Claude Harness core modules."""
+"""Tests for small-claude-code core modules."""
 
 import pytest
-from harness.core.config import Config
-from harness.core.message import Message, MessageRole, ContentBlock
+from small_claude_code.core.config import Config
+from small_claude_code.core.message import Message, MessageRole, ContentBlock
 
 
 class TestConfig:

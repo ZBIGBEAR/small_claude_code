@@ -47,7 +47,14 @@ small-claude-code strips away complexity to teach the essential patterns:
 ### Installation
 
 ```bash
+# Create virtual environment (recommended)
+python3 -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# or .venv\Scripts\activate  # Windows
+
+# Install dependencies
 pip install -r requirements.txt
+pip install pytest  # Optional, for running tests
 ```
 
 ### Environment Setup
@@ -61,7 +68,7 @@ export CLAUDE_WORKDIR="/path/to/workdir"        # Optional
 ### Simple Agent
 
 ```python
-from harness import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
 
 # Create configuration
 config = Config.from_env()
@@ -70,9 +77,9 @@ config.system_prompt = "You are a helpful coding assistant."
 # Create agent
 agent = AgentLoop(config)
 
-# Register tools
-agent.register_tool("bash", BashTool())
-agent.register_tool("read", ReadTool())
+# Register tools (workdir is required)
+agent.register_tool("bash", BashTool(workdir=str(config.workdir)))
+agent.register_tool("read", ReadTool(workdir=str(config.workdir)))
 
 # Run a task
 result = agent.run("List files in the current directory")
@@ -82,13 +89,17 @@ print(result)
 ### With Permission Guard
 
 ```python
-from harness import AgentLoop, Config, BashTool
-from harness.permission import PermissionGuard, PermissionAction
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code.permission import PermissionGuard, PermissionAction
 
+# Create permission guard
 guard = PermissionGuard()
 guard.allow("read", "**/*")        # Allow all reads
 guard.approve("bash", "**/*")      # Require approval for bash
 guard.deny("bash", "rm -rf /**")  # Never allow destructive commands
+
+# Create tool
+bash_tool = BashTool(workdir=str(config.workdir))
 
 # Wrap tools with permission guard
 def safe_bash(**kwargs):
@@ -98,12 +109,13 @@ def safe_bash(**kwargs):
     return bash_tool.execute(**kwargs).content
 
 agent.register_tool("bash", safe_bash)
+agent.register_tool("read", ReadTool(workdir=str(config.workdir)))
 ```
 
 ### With Task Management
 
 ```python
-from harness.task import TaskManager, TaskStatus
+from small_claude_code.task import TaskManager, TaskStatus
 
 task_manager = TaskManager()
 
@@ -125,7 +137,7 @@ for task in task_manager.get_ready_tasks():
 
 ```
 small-claude-code/
-├── harness/
+├── small_claude_code/       # Main package
 │   ├── core/           # Agent loop and message handling
 │   ├── tools/          # Tool implementations
 │   ├── permission/     # Permission guard
@@ -216,7 +228,7 @@ small-claude-code is designed for commercial use:
 ### Adding Custom Tools
 
 ```python
-from harness.tools.base import BaseTool, ToolResult
+from small_claude_code.tools.base import BaseTool, ToolResult
 
 class MyTool(BaseTool):
     name = "my_tool"
@@ -232,7 +244,7 @@ agent.register_tool("my_tool", MyTool())
 ### Adding Hooks
 
 ```python
-from harness.hooks import HookManager, HookType
+from small_claude_code.hooks import HookManager, HookType
 
 def log_pre_tool(tool_name, params):
     print(f"Executing {tool_name}")

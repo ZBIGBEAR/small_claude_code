@@ -47,7 +47,14 @@ small-claude-code 剥离复杂性，只教授核心模式：
 ### 安装
 
 ```bash
+# 创建虚拟环境（推荐）
+python3 -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+# 或 .venv\Scripts\activate  # Windows
+
+# 安装依赖
 pip install -r requirements.txt
+pip install pytest  # 可选，用于运行测试
 ```
 
 ### 环境配置
@@ -61,7 +68,7 @@ export CLAUDE_WORKDIR="/path/to/workdir"        # 可选
 ### 简单 Agent
 
 ```python
-from harness import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
 
 # 创建配置
 config = Config.from_env()
@@ -70,9 +77,9 @@ config.system_prompt = "你是一个有用的编程助手。"
 # 创建 Agent
 agent = AgentLoop(config)
 
-# 注册工具
-agent.register_tool("bash", BashTool())
-agent.register_tool("read", ReadTool())
+# 注册工具（需要指定 workdir）
+agent.register_tool("bash", BashTool(workdir=str(config.workdir)))
+agent.register_tool("read", ReadTool(workdir=str(config.workdir)))
 
 # 执行任务
 result = agent.run("列出当前目录的文件")
@@ -82,13 +89,17 @@ print(result)
 ### 带权限守卫
 
 ```python
-from harness import AgentLoop, Config, BashTool
-from harness.permission import PermissionGuard, PermissionAction
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool
+from small_claude_code.permission import PermissionGuard, PermissionAction
 
+# 创建权限守卫
 guard = PermissionGuard()
 guard.allow("read", "**/*")        # 允许所有读取
 guard.approve("bash", "**/*")      # Bash 需要审批
 guard.deny("bash", "rm -rf /**")  # 禁止危险命令
+
+# 创建工具
+bash_tool = BashTool(workdir=str(config.workdir))
 
 # 包装工具
 def safe_bash(**kwargs):
@@ -97,13 +108,15 @@ def safe_bash(**kwargs):
         return f"拒绝: {result.reason}"
     return bash_tool.execute(**kwargs).content
 
+# 注册工具
 agent.register_tool("bash", safe_bash)
+agent.register_tool("read", ReadTool(workdir=str(config.workdir)))
 ```
 
 ### 带任务管理
 
 ```python
-from harness.task import TaskManager, TaskStatus
+from small_claude_code.task import TaskManager, TaskStatus
 
 task_manager = TaskManager()
 
@@ -125,7 +138,7 @@ for task in task_manager.get_ready_tasks():
 
 ```
 small-claude-code/
-├── harness/
+├── small_claude_code/       # 主包
 │   ├── core/           # Agent 循环和消息处理
 │   ├── tools/          # 工具实现
 │   ├── permission/     # 权限守卫
@@ -216,7 +229,7 @@ small-claude-code 为商业使用设计：
 ### 添加自定义工具
 
 ```python
-from harness.tools.base import BaseTool, ToolResult
+from small_claude_code.tools.base import BaseTool, ToolResult
 
 class MyTool(BaseTool):
     name = "my_tool"
@@ -231,7 +244,7 @@ agent.register_tool("my_tool", MyTool())
 ### 添加钩子
 
 ```python
-from harness.hooks import HookManager, HookType
+from small_claude_code.hooks import HookManager, HookType
 
 def log_pre_tool(tool_name, params):
     print(f"执行 {tool_name}")

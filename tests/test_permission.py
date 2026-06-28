@@ -1,7 +1,7 @@
-"""Tests for Claude Harness permission module."""
+"""Tests for small-claude-code permission module."""
 
 import pytest
-from harness.permission.guard import (
+from small_claude_code.permission.guard import (
     PermissionGuard,
     PermissionRule,
     AllowRule,

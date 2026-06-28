@@ -7,8 +7,8 @@ This example demonstrates:
 - Result collection
 """
 
-from harness import AgentLoop, Config, BashTool
-from harness.subagent import SubagentRunner
+from small_claude_code import AgentLoop, Config, BashTool
+from small_claude_code.subagent import SubagentRunner
 
 
 def main():

@@ -7,7 +7,7 @@ This example demonstrates:
 - Simple task execution
 """
 
-from harness import AgentLoop, Config, BashTool, ReadTool, WriteTool
+from small_claude_code import AgentLoop, Config, BashTool, ReadTool, WriteTool
 
 
 def main():

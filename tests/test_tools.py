@@ -1,11 +1,11 @@
-"""Tests for Claude Harness tools."""
+"""Tests for small-claude-code tools."""
 
 import pytest
 from pathlib import Path
-from harness.tools.base import BaseTool, ToolResult
-from harness.tools.bash import BashTool
-from harness.tools.file import ReadTool, WriteTool, EditTool
-from harness.tools.search import GlobTool, GrepTool
+from small_claude_code.tools.base import BaseTool, ToolResult
+from small_claude_code.tools.bash import BashTool
+from small_claude_code.tools.file import ReadTool, WriteTool, EditTool
+from small_claude_code.tools.search import GlobTool, GrepTool
 
 
 class TestToolResult:

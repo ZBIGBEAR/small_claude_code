@@ -1,5 +1,5 @@
-"""Hooks module for Claude Harness."""
+"""Hooks module for small-claude-code."""
 
-from .manager import HookManager, Hook
+from .manager import HookManager, Hook, HookType
 
-__all__ = ["HookManager", "Hook"]
+__all__ = ["HookManager", "Hook", "HookType"]
